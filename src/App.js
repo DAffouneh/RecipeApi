@@ -20,7 +20,21 @@ class App extends Component {
     this.setState({ recipes: data.hits });
     console.log(this.state.recipes);
   };
+  componentDidMount = () => {
+    const json = localStorage.getItem("recipes");
+    const recipes = JSON.parse(json);
+    this.setState({ recipes: recipes });
+  };
+  componentDidUpdate = () => {
+    const recipes = JSON.stringify(this.state.recipes);
+    console.log(this.state.recipes);
+
+    localStorage.setItem("recipes", recipes);
+  };
+
   render() {
+    console.log("render" + this.state.recipes);
+
     return (
       <div className="App">
         <header className="App-header">
